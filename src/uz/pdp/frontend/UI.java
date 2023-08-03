@@ -9,6 +9,7 @@ import uz.pdp.test.Main;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class UI {
     static Scanner textScanner = new Scanner(System.in);
@@ -65,16 +66,28 @@ public class UI {
     }
 
     public static void page1() {
-        System.out.print(YELLOW + "Enter the username:" + ANSI_RESET);
-        String username = textScanner.next();
-        System.out.print(YELLOW + "password:" + ANSI_RESET);
-        String password = textScanner.next();
+        String username;
+        while (true) {
+            System.out.print(YELLOW + "Enter the username:" + ANSI_RESET);
+            username = textScanner.next();
+            if (checkUserName(username)) {
+                break;
+            }
+            System.out.println(RED + "User name hato kiritildi!! " + ANSI_RESET + GREEN + " Misol uchun:: Aslbek yoki Aslbek12 yani 5 tadan kop bolgan harf yoki raqamlardan foydalaning." + ANSI_RESET);
+        }
+        String password;
+        while (true) {
+            System.out.print(YELLOW + "password:" + ANSI_RESET);
+            password = textScanner.next();
+            if (checkPassword(password)) {
+                break;
+            }
+            System.out.println(RED+"Parol notogri formatda kirildi !! Hech bo'maganda 1 ta katta harf va 1ta kichik harf  1 ta raqam 1ta belgi va uzunligi 5 dan katta bo'lsin. "+ANSI_RESET);
+        }
         System.out.print(YELLOW + "Confirm password:" + ANSI_RESET);
         String confirmPassword = textScanner.next();
         while (!password.equals(confirmPassword)) {
             System.out.println(RED + "Confirm password birhil emas!" + ANSI_RESET);
-            System.out.print(YELLOW + "password:" + ANSI_RESET);
-            password = textScanner.next();
             System.out.print(YELLOW + "Confirm password:" + ANSI_RESET);
             confirmPassword = textScanner.next();
         }
@@ -85,6 +98,17 @@ public class UI {
         } else {
             System.out.println(RED + "=======> Bunday user alla qachon mavjud <========" + ANSI_RESET);
         }
+    }
+
+    private static boolean checkPassword(String password) {
+        Pattern compile = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{5,}$");
+        return compile.matcher(password).matches();
+
+    }
+
+    private static boolean checkUserName(String username) {
+        Pattern compile = Pattern.compile("^[a-zA-Z0-9._-]{3,}$");
+        return compile.matcher(username).matches();
     }
 
     public static void page2() {
