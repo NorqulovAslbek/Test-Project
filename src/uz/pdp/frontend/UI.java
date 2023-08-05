@@ -24,12 +24,12 @@ public class UI {
 
     static {
         userService.create(new UserDTO("admin", "root123456", "root123456", UserType.ADMIN));
+        userService.create(new UserDTO("Aslbek","@Asl12","@Asl12",UserType.USER));
     }
 
     public static void main(String[] args) {
 
         ui();
-
 
     }
 
@@ -38,7 +38,6 @@ public class UI {
             System.out.println(YELLOW + "1-->Ro'yhatdan o'tish:" + ANSI_RESET);
             System.out.println(YELLOW + "2-->Saytga kirish:" + ANSI_RESET);
             System.out.println(YELLOW + "3-->Malumotlarni yangilash:" + ANSI_RESET);
-            System.out.println(YELLOW + "4-->Ro'yhatdan o'tish:" + ANSI_RESET);
             System.out.print(YELLOW + "Tanlang:" + ANSI_RESET);
             try {
                 int enter = numberScanner.nextInt();
@@ -82,7 +81,7 @@ public class UI {
             if (checkPassword(password)) {
                 break;
             }
-            System.out.println(RED+"Parol notogri formatda kirildi !! Hech bo'maganda 1 ta katta harf va 1ta kichik harf  1 ta raqam 1ta belgi va uzunligi 5 dan katta bo'lsin. "+ANSI_RESET);
+            System.out.println(RED + "Parol notogri formatda kirildi !! Hech bo'maganda 1 ta katta harf va 1ta kichik harf  1 ta raqam 1ta belgi va uzunligi 5 dan katta bo'lsin. " + ANSI_RESET);
         }
         System.out.print(YELLOW + "Confirm password:" + ANSI_RESET);
         String confirmPassword = textScanner.next();
@@ -120,8 +119,7 @@ public class UI {
         if (userService.get(enterUser, enterPassword).getUsername().equals("")) {
             System.out.println(RED + "Username yoki password hato kiritildi!" + ANSI_RESET);
         } else {
-            Main.mainMethod(userService.get(enterUser, enterPassword).getUserType());
-
+            Main.mainMethod(enterUser, enterPassword, userService);
         }
     }
 

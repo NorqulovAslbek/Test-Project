@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-    private  List<User> users=new ArrayList<>();
+    private static final List<User> users=new ArrayList<>();
 
-    public List<User> getUsers() {
+//    public List<User> getUsers() {
+//        return users;
+//    }
+    public static List<User> getUsers(){
         return users;
     }
+
 
 }
