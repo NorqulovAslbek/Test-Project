@@ -21,7 +21,7 @@ public class UsersDate {
         System.out.print(BLUE + "------------------------------------------------------------\n" + ANSI_RESET);
         for (User user : users) {
             count++;
-            System.out.print(BLUE + "|" + (count <= 9 ? (" " + RED + count + ANSI_RESET + "  ") : (count > 9 & count < 100) ? ("|" + RED + count + ANSI_RESET + " ") : ("|" + RED + count + ANSI_RESET)) + ANSI_RESET);
+            System.out.print(BLUE + "|" + (count <= 9 ? (" " + RED + count + ANSI_RESET + "  ") : (git count > 9 & count < 100) ? ("|" + RED + count + ANSI_RESET + " ") : ("|" + RED + count + ANSI_RESET)) + ANSI_RESET);
             System.out.print(BLUE + "|   " + ANSI_RESET + RED + user.getUsername() + ANSI_RESET);
             for (int i = 0; i < 20 - ("|    " + user.getUsername()).length() - 2; i++) {
                 System.out.print(" ");
